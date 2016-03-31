@@ -62,6 +62,37 @@ namespace GaragePlanches.Controllers
             return View(car);
         }
 
+
+        // GET: Cars/Create
+        public ActionResult CreateCustomer(int id)
+        {
+            //ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "Firstname");
+            //ViewBag.CustomerID = id; 
+            ViewBag.Customer = db.Customers.Find(id);
+            Car car = new Car();
+            car.CustomerID = id; 
+            return View(car);
+        }
+
+        // POST: Cars/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateCustomer([Bind(Include = "CarID,Brand,Model,Immatrication,Year,CustomerID")] Car car)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Car.Add(car);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            //ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "Firstname", car.CustomerID);
+            return View(car);
+        }
+
+
         // GET: Cars/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {

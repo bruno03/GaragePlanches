@@ -30,6 +30,7 @@ namespace GaragePlanches.Models
         public int Year { get; set; }
 
         public int CustomerID { get; set; }
+
         public virtual Customer Customer { get; set; }
     }
 }
