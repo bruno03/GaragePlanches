@@ -1,0 +1,60 @@
+﻿@model GaragePlanches.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+
+    </dl>
+
+    <h5>Voiture</h5>
+    <hr />
+    <dl class="dl-horizontal">
+
+        @foreach (var item in Model.Cars)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Cars", new { id = item.CarID }, null) |
+                    @Html.ActionLink("Details", "Details", "Cars", new { id = item.CarID }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Cars", new { id = item.CarID },null) |
+                </td>
+            </tr>
+        }
+        
+
+    </dl>
+</div>
+
+
+<hr />
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
