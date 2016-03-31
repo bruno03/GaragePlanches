@@ -47,7 +47,7 @@ namespace GaragePlanches.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CustomerID,Firstname,Lastname")] Customer customer)
+        public async Task<ActionResult> Create([Bind(Include = "CustomerID,Firstname,Lastname,Address")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace GaragePlanches.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CustomerID,Firstname,Lastname")] Customer customer)
+        public async Task<ActionResult> Edit([Bind(Include = "CustomerID,Firstname,Lastname,Address")] Customer customer)
         {
             if (ModelState.IsValid)
             {

@@ -26,10 +26,16 @@
             @Html.DisplayFor(model => model.Lastname)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
     </dl>
 
-    <h5>Voiture</h5>
-    <hr />
+
     <dl class="dl-horizontal">
 
         @foreach (var item in Model.Cars)
@@ -42,18 +48,14 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", "Cars", new { id = item.CarID }, null) |
                     @Html.ActionLink("Details", "Details", "Cars", new { id = item.CarID }, null) |
-                    @Html.ActionLink("Delete", "Delete", "Cars", new { id = item.CarID },null) |
+                    @Html.ActionLink("Delete", "Delete", "Cars", new { id = item.CarID }, null) |
                 </td>
             </tr>
         }
-        
+
 
     </dl>
 </div>
-
-
-<hr />
-
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerID }) |
     @Html.ActionLink("Back to List", "Index")
