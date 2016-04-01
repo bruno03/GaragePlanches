@@ -31,6 +31,11 @@ namespace GaragePlanches.Controllers
                         .OrderByDescending(c => c.Brand)
                         .Where(c => searchTerm == null || c.Brand.StartsWith(searchTerm)); 
 
+            if(Request.IsAjaxRequest())
+            {
+                return PartialView("_Car", car);
+            }
+
 
             return View(await car.ToListAsync());
         }

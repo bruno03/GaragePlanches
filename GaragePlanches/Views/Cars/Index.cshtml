@@ -6,57 +6,28 @@
 
 <h2>Index</h2>
 
-<form method="get">
-    <input type="search" name="searchTerm" />
-    <input type="submit" value="Search by Brand" />
-</form>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Customer.Firstname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Brand)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Model)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Immatrication)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Year)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.Firstname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Brand)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Immatrication)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Year)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CarID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CarID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CarID })
-        </td>
-    </tr>
-}
+@*<form method="get">
+        <input type="search" name="searchTerm" />
+        <input type="submit" value="Search by Brand" />
+   </form>*@
 
-</table>
+@using (Ajax.BeginForm(
+                new AjaxOptions
+                {
+                    HttpMethod = "get",
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "carList"
+                }))
+        {
+            <input type="search" name="searchTerm" />
+            <input type="submit" value="Search by Brand" />
+        }
+
+<br />
+
+@Html.Partial("_Car", Model);
+
