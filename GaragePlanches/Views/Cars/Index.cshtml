@@ -32,10 +32,10 @@
     <form method="get" action="@Url.Action("Index")"
           data-gp-ajax="true" data-gp-target="#carList">
 
-         <input type="search" name="searchTerm" />
+         <input type="search" name="searchTerm" data-gp-autocomplete="@Url.Action("Autocomplete")" />
          <input type="submit" value="Search by Brand" />
     </form>
 <br />
 
-@Html.Partial("_Car", Model);
+@Html.Partial("_Car", Model)
 

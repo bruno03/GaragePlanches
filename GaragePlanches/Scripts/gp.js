@@ -21,7 +21,20 @@
     };
 
 
+    var createAutocomplete = function () {
+        var $input = $(this);
+
+        var options = {
+            source: $input.attr("data-gp-autocomplete")
+        };
+
+        console.log(options);
+        console.log(options.source);
+
+        //$input.autocomplete(options);
+    };
+
+
     $("form[data-gp-ajax='true']").submit(ajaxFormSubmit);
-
-
+    $("input[data-gp-autocomplete]").each(createAutocomplete);
 });
