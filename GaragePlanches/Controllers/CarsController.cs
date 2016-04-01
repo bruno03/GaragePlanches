@@ -15,6 +15,19 @@ namespace GaragePlanches.Controllers
     {
         private GarageContext db = new GarageContext();
 
+        public async Task<ActionResult> AutoComplete(string term)
+        {
+            var car = db.Car.Include(c => c.Customer)
+            .OrderByDescending(c => c.Brand)
+            .Where(c => c.Brand.StartsWith(term))
+            .Select(c => new
+            {
+                label = c.Brand + " " + c.Model
+            });
+
+            return Json(car, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Cars
         public async Task<ActionResult> Index(string searchTerm = null)
         {

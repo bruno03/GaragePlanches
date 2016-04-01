@@ -15,18 +15,26 @@
         <input type="submit" value="Search by Brand" />
    </form>*@
 
-@using (Ajax.BeginForm(
-                new AjaxOptions
-                {
-                    HttpMethod = "get",
-                    InsertionMode = InsertionMode.Replace,
-                    UpdateTargetId = "carList"
-                }))
-        {
-            <input type="search" name="searchTerm" />
-            <input type="submit" value="Search by Brand" />
-        }
+@* AJAX CALL
+    @using (Ajax.BeginForm(
+                    new AjaxOptions
+                    {
+                        HttpMethod = "get",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "carList"
+                    }))
+            {
+                <input type="search" name="searchTerm" />
+                <input type="submit" value="Search by Brand" />
+            }
+*@
 
+    <form method="get" action="@Url.Action("Index")"
+          data-gp-ajax="true" data-gp-target="#carList">
+
+         <input type="search" name="searchTerm" />
+         <input type="submit" value="Search by Brand" />
+    </form>
 <br />
 
 @Html.Partial("_Car", Model);

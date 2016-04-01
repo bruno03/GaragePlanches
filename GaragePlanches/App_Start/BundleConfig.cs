@@ -11,7 +11,8 @@ namespace GaragePlanches
             bundles.Add(new ScriptBundle("~/bundles/gp").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery.unobtrusive*",
-                        "~/Scripts/jquery.validate*"
+                        "~/Scripts/jquery.validate*",
+                        "~/Scripts/gp.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
