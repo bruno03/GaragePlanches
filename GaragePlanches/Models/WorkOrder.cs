@@ -12,6 +12,8 @@ namespace GaragePlanches.Models
     {
         public int WorkOrderID { get; set; }
 
+        public DateTime EntryDate { get; set; }
+
         [Display(Name = "Prix")]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }

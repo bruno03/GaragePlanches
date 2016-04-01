@@ -16,9 +16,22 @@ namespace GaragePlanches.Controllers
         private GarageContext db = new GarageContext();
 
         // GET: Cars
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string searchTerm = null)
         {
-            var car = db.Car.Include(c => c.Customer);
+            //var car = db.Car.Include(c => c.Customer);
+
+            /* COMPREHENSION QUERY SYNTAX 
+            var car = from c in db.Car.Include(cust => cust.Customer)
+                      orderby c.Brand descending
+                      select c;
+            */
+
+            //EXTENSION METHODE SYNTAX 
+            var car = db.Car.Include(c => c.Customer)
+                        .OrderByDescending(c => c.Brand)
+                        .Where(c => searchTerm == null || c.Brand.StartsWith(searchTerm)); 
+
+
             return View(await car.ToListAsync());
         }
 
