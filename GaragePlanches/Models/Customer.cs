@@ -27,5 +27,13 @@ namespace GaragePlanches.Models
 
         public virtual List<Car>Cars { get; set; }
 
+        public new string FullName
+        {
+            get
+            {
+                return Firstname + " " + Lastname; 
+            }
+        }
+
     }
 }

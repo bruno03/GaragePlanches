@@ -38,10 +38,10 @@ namespace GaragePlanches.Controllers
         }
 
         // GET: WorkOrders/Create
-        public ActionResult Create()
+        public ActionResult Create(int CustID = 0)
         {
-            ViewBag.CarID = new SelectList(db.Car, "CarID", "Brand");
-            ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "Firstname");
+            ViewBag.CarID = new SelectList(db.Car, "CarID", "FullName");
+            ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "FullName");
             return View();
         }
 
@@ -50,7 +50,7 @@ namespace GaragePlanches.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "WorkOrderID,Price,Kilometers,CustomerID,CarID")] WorkOrder workOrder)
+        public async Task<ActionResult> Create([Bind(Include = "WorkOrderID,EntryDate,Price,Kilometers,CustomerID,CarID")] WorkOrder workOrder)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace GaragePlanches.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "WorkOrderID,Price,Kilometers,CustomerID,CarID")] WorkOrder workOrder)
+        public async Task<ActionResult> Edit([Bind(Include = "WorkOrderID,EntryDate,Price,Kilometers,CustomerID,CarID")] WorkOrder workOrder)
         {
             if (ModelState.IsValid)
             {

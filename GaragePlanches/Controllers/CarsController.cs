@@ -28,6 +28,20 @@ namespace GaragePlanches.Controllers
             return Json(car, JsonRequestBehavior.AllowGet);
         }
 
+
+        public ActionResult CarByCustomer(int customerID)
+        {
+            var car = db.Car.Include(c => c.Customer)
+                    .Where(c => c.CustomerID == customerID)
+                    .Select(c => new 
+                    {
+                        label = c.Brand + " " + c.Model
+                    });
+
+            return Json(car, JsonRequestBehavior.AllowGet);
+            //return PartialView("")
+        }
+
         // GET: Cars
         public async Task<ActionResult> Index(string searchTerm = null)
         {
@@ -42,7 +56,7 @@ namespace GaragePlanches.Controllers
             //EXTENSION METHODE SYNTAX 
             var car = db.Car.Include(c => c.Customer)
                         .OrderByDescending(c => c.Brand)
-                        .Where(c => searchTerm == null || c.Brand.StartsWith(searchTerm)); 
+                        .Where(c => searchTerm == null || c.Brand.StartsWith(searchTerm));
 
             if(Request.IsAjaxRequest())
             {
@@ -67,6 +81,7 @@ namespace GaragePlanches.Controllers
             }
             return View(car);
         }
+
 
         // GET: Cars/Create
         public ActionResult Create()
@@ -93,6 +108,7 @@ namespace GaragePlanches.Controllers
             return View(car);
         }
 
+        
 
         // GET: Cars/Create
         public ActionResult CreateCustomer(int id)

@@ -12,6 +12,7 @@ namespace GaragePlanches.Models
     {
         public int WorkOrderID { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime EntryDate { get; set; }
 
         [Display(Name = "Prix")]

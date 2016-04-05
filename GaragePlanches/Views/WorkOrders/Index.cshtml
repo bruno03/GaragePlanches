@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -16,6 +17,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Customer.Firstname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Price)
@@ -33,6 +37,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Customer.Firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntryDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)

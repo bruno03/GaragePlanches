@@ -29,8 +29,15 @@ namespace GaragePlanches.Models
         [Range(1900, 2500)]
         public int Year { get; set; }
 
-        public int CustomerID { get; set; }
 
+        public new string FullName
+        {
+            get
+            {
+                return Brand + " " + Model; 
+            }
+        }
+        public int CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
     }
 }

@@ -27,9 +27,6 @@
             select: submitAutocompleteForm
         };
 
-        console.log(options);
-        console.log(options.source);
-
         $input.autocomplete(options);
     };
 
@@ -44,7 +41,42 @@
     };
 
 
+    var getCarByCustomer = function () {
+        var $select = $(this);
+
+        var options = {
+            source: $select.attr("data-gp-carbycustomer")
+        };
+        
+        console.log(options);
+        console.log($select);
+        
+        $.ajax(options).done(function (data) {
+            var $id = $select.attr("data-gp-target");
+            console.log($id);
+            console.log($('#' + $id))
+            console.log(data);
+            //$target.replaceWith(data);
+        });
+        
+    };
+
+    /*
+    //si les browsers ont des widgets pour les dates, on n'affiche pas le datepicker de jQuery
+    if (!Modernizr.inputtypes.date) {
+        $(function () {
+            $("input[type='date']")
+                        .datepicker()
+                        .get(0)
+                        .setAttribute("type", "text");
+        })
+    }
+    */
     $("form[data-gp-ajax='true']").submit(ajaxFormSubmit);
     $("input[data-gp-autocomplete]").each(createAutocomplete);
+    
+    $("select[data-gp-carbycustomer]").change(getCarByCustomer);
+
+    console.log("fin d'exécution gp.js");
 
 });
